@@ -1,17 +1,27 @@
-import React, { useState } from 'react'
-import './App.css'
+import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import './App.css';
+import Home from "./pages/Home";
+import Navbar from './Components/Navbar';
 
 function App() {
  
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+      </BrowserRouter>
+
            
     </>
   )
 }
 
 export default App
+
+
+
