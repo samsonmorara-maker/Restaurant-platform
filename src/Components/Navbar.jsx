@@ -10,6 +10,8 @@ function Navbar(){
         <h1 className="text-3xl font-bold">🍽️TastyBites</h1>
         <div>
             <Link to="/">Home</Link>
+            <Link to="/Restaurants">Restaurants</Link>
+            <Link to="/Bookings">My Bookings</Link>
         </div>
         
     </nav>
