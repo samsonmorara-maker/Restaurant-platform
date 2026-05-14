@@ -24,15 +24,15 @@ function Restaurants(){
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
             {restaurants.map((restaurant) => ( 
                 <Link to={`/restaurants/${restaurant.id}`} key={restaurant.id}>
-                    <div>
+                    <div className="bg-white rounded-xl shadow-md">
                         <img src={restaurant.image}
                         alt={restaurant.name}
                         className="w-full h-48 object-cover rounded-t-xl"/>
-                        <div>
-                            <h2>{restaurant.name}</h2>
-                            <p>{restaurant.cuisine}</p>
-                            <p>{restaurant.location}</p>
-                            <p>⭐{restaurant.rating}</p>
+                        <div p-6>
+                            <h2 className="text-xl font-bold">{restaurant.name}</h2>
+                            <p className="text-gray-700">{restaurant.cuisine}</p>
+                            <p className="text-gray-400">{restaurant.location}</p>
+                            <p className="text-orange-500 font-bold mt-2" >⭐{restaurant.rating}</p>
                         </div>
                     </div>
                 </Link>
