@@ -27,8 +27,8 @@ function Restaurants(){
                     <div className="bg-white rounded-xl shadow-md">
                         <img src={restaurant.image}
                         alt={restaurant.name}
-                        className="w-full h-48 object-cover rounded-t-xl"/>
-                        <div p-6>
+                        className="w-full h-50 object-cover rounded-t-xl"/>
+                        <div>
                             <h2 className="text-xl font-bold">{restaurant.name}</h2>
                             <p className="text-gray-700">{restaurant.cuisine}</p>
                             <p className="text-gray-400">{restaurant.location}</p>

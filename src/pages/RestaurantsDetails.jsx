@@ -35,15 +35,18 @@ function RestaurantsDetails(){
         <>
         <div>
             <img src={restaurant.image} alt={restaurant.name} 
-            className="w-full h-64 0bject-cover rounded-xl" />
+            className="w-full h-100 0bject-cover rounded-xl" />
             <h1 className=" text-3xl font-bold mt-4">{restaurant.name}</h1>
             <p className="text-gray-500">{restaurant.cuisine} . {restaurant.location}</p>
             <p className="text-orange-500">⭐{restaurant.rating}</p>
-            <p className="mt-2 text-gray-600">{restaurant.description}</p>
+            <p className="mt-2 text-xl text-gray-600">{restaurant.description}</p>
 <h1 className="text-2xl font-bold mt-8 mb-4">Menu</h1>
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">{menuItems.map((item) =>(
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">{menuItems.map((item) =>(
     <div key={item.id} className="bg-white rounded-xl shadow-md p-4">
         <img src={item.image} alt={item.name} className="w-full h-32 0bject-cover rounded-lg mb-2"/>
+        <h3 className="font-bold">{item.name}</h3>
+        <p className="">{item.category}</p>
+        <p className="text-orange-500">${item.price}</p>
     </div>
 ))}</div>
 
