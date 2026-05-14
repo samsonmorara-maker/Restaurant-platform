@@ -1,4 +1,5 @@
-  import React from "react" 
+  import React from "react" ;
+  import Herosection from "../Components/Herosection";
 
     
     
@@ -6,11 +7,9 @@
    function Home() {
     return(
       <>
-    
+    <Herosection />
 
-    <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+   
       </>
       );
    }
