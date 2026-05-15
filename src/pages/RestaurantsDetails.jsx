@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom";
+import BookingForm from "../Components/BookingForm";
 
 function RestaurantsDetails(){
     const { id } = useParams()
@@ -30,6 +31,11 @@ function RestaurantsDetails(){
         }
         fetchRestaurantData()
     },[id])
+    const handlePreorder = (item) => {
+        Navigate("/booking",{state:restaurant,
+            preOrderItem:item,
+        })
+    }
     if (!restaurant) return <p>Loading...</p>
     return(
         <>
@@ -46,13 +52,14 @@ function RestaurantsDetails(){
         <img src={item.image} alt={item.name} className="w-full h-32 0bject-cover rounded-lg mb-2"/>
         <h3 className="font-bold">{item.name}</h3>
         <p className="">{item.category}</p>
-        <p className="text-orange-500">${item.price}</p>
+        <p className="text-orange-500">${item.price} <button className="bg-orange-500 text-white px-4 py-2 rounded-lg ml-70">
+            Pre-order</button></p>
     </div>
 ))}</div>
 
 
         </div>
-
+            <BookingForm restaurant={restaurant}/>
         </>
     )
 
