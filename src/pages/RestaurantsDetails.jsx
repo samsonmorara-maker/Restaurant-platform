@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import BookingForm from "../Components/BookingForm";
 
 function RestaurantsDetails(){
     const { id } = useParams()
     const [restaurant, setRestaurant] = useState(null)
     const [menuItems, setMenuItems] = useState([])
+    const [selectedItems, setSelectedItems] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() =>{
         const  fetchRestaurantData = async () => {
@@ -31,11 +33,14 @@ function RestaurantsDetails(){
         }
         fetchRestaurantData()
     },[id])
-    const handlePreorder = (item) => {
-        Navigate("/booking",{state:restaurant,
-            preOrderItem:item,
-        })
-    }
+   const handleGoToBooking = () => {
+    navigate("/Bookings",{
+        state:{
+            restaurant,
+            preOrderItems:selectedItems
+        }
+    })
+   }
     if (!restaurant) return <p>Loading...</p>
     return(
         <>
@@ -52,14 +57,15 @@ function RestaurantsDetails(){
         <img src={item.image} alt={item.name} className="w-full h-32 0bject-cover rounded-lg mb-2"/>
         <h3 className="font-bold">{item.name}</h3>
         <p className="">{item.category}</p>
-        <p className="text-orange-500">${item.price} <button className="bg-orange-500 text-white px-4 py-2 rounded-lg ml-70">
-            Pre-order</button></p>
+        <span className="text-orange-500">${item.price}</span>
+         <button onClick={handleGoToBooking}
+        className="bg-orange-500 text-white px-4 py-2 rounded-lg ml-70">
+            Pre-order</button>
     </div>
 ))}</div>
 
-
         </div>
-            <BookingForm restaurant={restaurant}/>
+            <BookingForm restaurant={restaurant} preOrderItems={selectedItems}/>
         </>
     )
 

@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function BookingForm({ restaurant }) {
+function BookingForm({ restaurant, preOrderItems }) {
   const [name, setName] = useState("")
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
@@ -19,14 +19,7 @@ function BookingForm({ restaurant }) {
       date,
       time,
       guests,
-      preOrderItem: preOrderItem
-      ?{
-        id:preOrderItem.id, 
-        name:preOrderItem.name,
-        price:preOrderItem.price,
-        image:preOrderItem.image,
-      }:null,
-
+      preOrderItems,
       status: "active"
     }
 
@@ -57,15 +50,31 @@ function BookingForm({ restaurant }) {
   }
 
   return (
+
     <form
       onSubmit={handleSubmit}
       className="bg-white p-6 rounded-xl shadow-md space-y-4"
     >
+        
       <h2 className="text-xl font-bold">
         Book {restaurant.name}
       </h2>
-
-      {/* NAME */}
+      {preOrderItems && preOrderItems.length > 0 && (
+        <div>
+            <h3>
+                pre-ordered meal
+            </h3>
+            {preOrderItems.map((item, index) => (
+      <div key={index} className="flex items-center gap-4 border-b pb-2 mb-2">
+        <img src={item.image} alt={item.name} className="h-16 w-16 object-cover rounded-lg"/>
+        <div>
+          <p className="font-bold">{item.name}</p>
+          <p className="text-orange-500">${item.price}</p>
+        </div>
+        </div>
+      ))}
+</div>
+      )}
       <input
         type="text"
         placeholder="Your Name" value={name}
@@ -93,5 +102,4 @@ function BookingForm({ restaurant }) {
     </form>
   )
 }
-
 export default BookingForm

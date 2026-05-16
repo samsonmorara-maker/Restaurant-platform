@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react"
-
+import { useLocation } from "react-router-dom"
+import BookingForm from "../Components/BookingForm"
 function Bookings() {
   const [bookings, setBookings] = useState([])
   const [editingBooking, setEditingBooking] = useState(null)
+  const location = useLocation()
+  const { restayrant, preOrderItems} = location.state || {}
 
   // Fetch bookings
   useEffect(() => {
@@ -24,8 +27,6 @@ function Bookings() {
       console.error("Error fetching bookings:", error)
     }
   }
-
-  // Cancel booking
   const handleCancelBooking = async (id) => {
     try {
       await fetch(`http://localhost:3000/bookings/${id}`, {
@@ -37,7 +38,6 @@ function Bookings() {
           status: "cancelled"
         })
       })
-
       setBookings(
         bookings.map((booking) =>
           booking.id === id
@@ -45,38 +45,27 @@ function Bookings() {
             : booking
         )
       )
-
       alert("Booking cancelled!")
-
     } catch (error) {
       console.error("Error cancelling booking:", error)
     }
   }
-
-  // Delete booking
   const handleDeleteBooking = async (id) => {
     try {
       await fetch(`http://localhost:3000/bookings/${id}`, {
         method: "DELETE"
       })
-
       setBookings(
         bookings.filter((booking) => booking.id !== id)
       )
-
       alert("Booking deleted!")
-
     } catch (error) {
       console.error("Error deleting booking:", error)
     }
   }
-
-  // Start editing
   const handleEditBooking = (booking) => {
     setEditingBooking(booking)
   }
-
-  // Save edited booking
   const handleSaveEdit = async () => {
     try {
       await fetch(

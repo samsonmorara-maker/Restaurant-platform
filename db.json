@@ -978,6 +978,18 @@
       "image": "https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg"
     }
   ],
-  "bookings": []
-  
+  "bookings": [
+    {
+      "restaurantId": "7",
+      "restaurantName": "Nairobi Kitchen",
+      "name": "samson ",
+      "date": "2026-05-21",
+      "time": "21:30",
+      "guests": "2",
+      "preOrderItems": [],
+      "status": "active",
+      "id": "qSEqzRDJU94"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
