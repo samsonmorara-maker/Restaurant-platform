@@ -13,14 +13,12 @@ function RestaurantsDetails(){
     useEffect(() =>{
         const  fetchRestaurantData = async () => {
             try{
-                const restaurantRes = await fetch (`http://localhost:3000/restaurants/${id}`)
+                const restaurantRes = await fetch (`https://restaurant-platform-cr7r.onrender.com/restaurants/${id}`)
                 if(!restaurantRes.ok){
-                    throw new Error("Failed to fetch restaurant")
-                }
+                    throw new Error("Failed to fetch restaurant")}
                 const restaurantData = await restaurantRes.json()
                 setRestaurant(restaurantData)
-
-                const menuRes = await fetch(`http://localhost:3000/menuItems?restaurantId=${id}`)
+                const menuRes = await fetch(`https://restaurant-platform-cr7r.onrender.com/menuItems?restaurantId=${id}`)
                  if (!menuRes.ok) {
                     throw new Error("Failed to fetch restaurant")
                  }
@@ -29,9 +27,8 @@ function RestaurantsDetails(){
             }
             catch(error){
                 console.error("Error fetching data:", error)
-            }
-        }
-        fetchRestaurantData()
+            }}
+    fetchRestaurantData()
     },[id])
    const handleGoToBooking = () => {
     navigate("/Bookings",{

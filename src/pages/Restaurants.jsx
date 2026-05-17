@@ -10,7 +10,7 @@ function Restaurants(){
     useEffect (() =>{
         async function fecthRestaurants() {
             try {
-       const response= await fetch("http://localhost:3000/restaurants")
+       const response= await fetch("https://restaurant-platform-cr7r.onrender.com/restaurants")
        if(!response.ok){
         throw new Error("Failed to fecth restaurants")
        }

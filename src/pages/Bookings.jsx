@@ -11,7 +11,7 @@ function Bookings() {
   }, [])
   const fetchBookings = async () => {
     try {
-      const res = await fetch("http://localhost:3000/bookings")
+      const res = await fetch("https://restaurant-platform-cr7r.onrender.com")
       if (!res.ok) {
         throw new Error("Failed to fetch bookings")
       }
@@ -23,7 +23,7 @@ function Bookings() {
   }
   const handleCancelBooking = async (id) => {
     try {
-      await fetch(`http://localhost:3000/bookings/${id}`, {
+      await fetch(`https://restaurant-platform-cr7r.onrender.com/bookings/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json"
@@ -46,7 +46,7 @@ function Bookings() {
   }
   const handleDeleteBooking = async (id) => {
     try {
-      await fetch(`http://localhost:3000/bookings/${id}`, {
+      await fetch(`https://restaurant-platform-cr7r.onrender.com/bookings/${id}`, {
         method: "DELETE"
       })
       setBookings(
@@ -63,7 +63,7 @@ function Bookings() {
   const handleSaveEdit = async () => {
     try {
       await fetch(
-        `http://localhost:3000/bookings/${editingBooking.id}`,
+        `https://restaurant-platform-cr7r.onrender.com/bookings/${editingBooking.id}`,
         {
           method: "PATCH",
           headers: {

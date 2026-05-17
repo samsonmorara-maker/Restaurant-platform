@@ -20,7 +20,7 @@ function BookingForm({ restaurant, preOrderItems }) {
       status: "active"
     }
     try {
-      const res = await fetch("http://localhost:3000/bookings", {
+      const res = await fetch("https://restaurant-platform-cr7r.onrender.com/bookings", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
