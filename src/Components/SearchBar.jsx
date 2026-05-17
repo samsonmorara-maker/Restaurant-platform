@@ -18,25 +18,17 @@ const categories = [
 function SearchBar({ restaurants, setFilteredRestaurants }) {
   const [search, setSearch] = useState("")
   const [activeCategory, setActiveCategory] = useState("All")
-
   const handleSearch = (value, category) => {
     let filtered = restaurants
-
     if (value.trim() !== "") {
       filtered = filtered.filter((restaurant) =>
         restaurant.name.toLowerCase().includes(value.toLowerCase())
-      )
-    }
-
+      )}
     if (category !== "All") {
       filtered = filtered.filter(
-        (restaurant) => restaurant.cuisine === category  // ✅ changed
-      )
-    }
-
-    setFilteredRestaurants(filtered)
-  }
-
+        (restaurant) => restaurant.cuisine === category  
+      )}
+    setFilteredRestaurants(filtered)}
   const handleInputChange = (e) => {
     const value = e.target.value
     setSearch(value)
@@ -47,7 +39,6 @@ function SearchBar({ restaurants, setFilteredRestaurants }) {
     setActiveCategory(category)
     handleSearch(search, category)
   }
-
   return (
     <div className="w-full mb-8">
       <div className="mb-4">
@@ -69,14 +60,12 @@ function SearchBar({ restaurants, setFilteredRestaurants }) {
               ${activeCategory === category
                 ? "bg-orange-500 text-white"
                 : "bg-gray-200 text-black hover:bg-orange-200"
-              }`}
-          >
+              }`}>
             {category}
           </button>
         ))}
       </div>
     </div>
-  )
-}
+  )}
 
 export default SearchBar
