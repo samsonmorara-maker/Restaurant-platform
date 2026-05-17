@@ -989,7 +989,18 @@
       "preOrderItems": [],
       "status": "active",
       "id": "qSEqzRDJU94"
+    },
+    {
+      "restaurantId": "2",
+      "restaurantName": "Spice Route",
+      "name": "samson ",
+      "date": "2026-04-29",
+      "time": "19:15",
+      "guests": 1,
+      "preOrderItems": [],
+      "status": "active",
+      "id": "BENr-2g-r_U"
     }
-  ]
- 
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }
