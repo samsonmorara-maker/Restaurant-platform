@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "../Components/SearchBar";
 function Restaurants(){
     const [restaurants, setRestaurants]= useState([])
+    const [filteredRestaurants, setFilteredRestaurants] = useState([])
+    const [menuItems, setMenuItems] = useState([])
 
 
     useEffect (() =>{
@@ -13,6 +16,7 @@ function Restaurants(){
        }
        const data = await response.json()
        setRestaurants(data)
+       setFilteredRestaurants(data)
         }catch (error){console.log(error.message)}
     }
     fecthRestaurants()},[])
@@ -20,9 +24,10 @@ function Restaurants(){
     return(
        <>
        <div>
+        <SearchBar restaurants={restaurants}  setFilteredRestaurants={setFilteredRestaurants}/>
         <h1 className="text-3xl font-bold mb-6 ml-4">All Restaurants</h1>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-2">
-            {restaurants.map((restaurant) => ( 
+            {filteredRestaurants.map((restaurant) => ( 
                 <Link to={`/restaurants/${restaurant.id}`} key={restaurant.id}>
                     <div className="bg-white rounded-xl shadow-md">
                         <img src={restaurant.image}
