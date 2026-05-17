@@ -6,23 +6,17 @@ function Bookings() {
   const [editingBooking, setEditingBooking] = useState(null)
   const location = useLocation()
   const { restayrant, preOrderItems} = location.state || {}
-
-  // Fetch bookings
   useEffect(() => {
     fetchBookings()
   }, [])
-
   const fetchBookings = async () => {
     try {
       const res = await fetch("http://localhost:3000/bookings")
-
       if (!res.ok) {
         throw new Error("Failed to fetch bookings")
       }
-
       const data = await res.json()
       setBookings(data)
-
     } catch (error) {
       console.error("Error fetching bookings:", error)
     }
@@ -76,50 +70,34 @@ function Bookings() {
             "Content-Type": "application/json"
           },
           body: JSON.stringify(editingBooking)
-        }
-      )
-
+        })
       setBookings(
         bookings.map((booking) =>
           booking.id === editingBooking.id
             ? editingBooking
             : booking
-        )
-      )
-
+        ))
       alert("Booking updated!")
       setEditingBooking(null)
-
     } catch (error) {
       console.error("Error updating booking:", error)
     }
   }
-
   return (
     <div className="p-6">
-
       <h1 className="text-3xl font-bold mb-8">
         My Bookings
       </h1>
-
       {bookings.length === 0 ? (
         <p>No bookings found.</p>
       ) : (
-
         <div className="space-y-6">
-
           {bookings.map((booking) => (
-
             <div
               key={booking.id}
-              className="bg-white rounded-xl shadow-md p-6"
-            >
-
-              {/* EDIT MODE */}
+              className="bg-white rounded-xl shadow-md p-6">
               {editingBooking?.id === booking.id ? (
-
                 <div className="flex flex-col gap-4">
-
                   <input
                     type="text"
                     value={editingBooking.name}
@@ -130,9 +108,7 @@ function Bookings() {
                       })
                     }
                     placeholder="Customer Name"
-                    className="border rounded-lg px-4 py-3"
-                  />
-
+                    className="border rounded-lg px-4 py-3"/>
                   <input
                     type="date"
                     value={editingBooking.date}
@@ -142,9 +118,7 @@ function Bookings() {
                         date: e.target.value
                       })
                     }
-                    className="border rounded-lg px-4 py-3"
-                  />
-
+                    className="border rounded-lg px-4 py-3"/>
                   <input
                     type="time"
                     value={editingBooking.time}
@@ -154,9 +128,7 @@ function Bookings() {
                         time: e.target.value
                       })
                     }
-                    className="border rounded-lg px-4 py-3"
-                  />
-
+                    className="border rounded-lg px-4 py-3"/>
                   <input
                     type="number"
                     value={editingBooking.guests}
@@ -167,155 +139,103 @@ function Bookings() {
                       })
                     }
                     placeholder="Guests"
-                    className="border rounded-lg px-4 py-3"
-                  />
-
+                    className="border rounded-lg px-4 py-3" />
                   <div className="flex gap-4">
-
                     <button
                       onClick={handleSaveEdit}
-                      className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
-                    >
+                      className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
                       Save Changes
                     </button>
-
                     <button
                       onClick={() => setEditingBooking(null)}
-                      className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600"
-                    >
+                      className="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600">
                       Cancel
                     </button>
-
                   </div>
-
                 </div>
-
               ) : (
-
                 <>
-                  {/* BOOKING INFO */}
                   <h2 className="text-2xl font-bold">
                     {booking.restaurantName}
                   </h2>
-
                   <div className="mt-4 space-y-2">
-
                     <p>
                       <span className="font-bold">Name:</span>{" "}
                       {booking.name}
                     </p>
-
                     <p>
                       <span className="font-bold">Date:</span>{" "}
                       {booking.date}
                     </p>
-
                     <p>
                       <span className="font-bold">Time:</span>{" "}
                       {booking.time}
                     </p>
-
                     <p>
                       <span className="font-bold">Guests:</span>{" "}
                       {booking.guests}
                     </p>
-
                     <p>
                       <span className="font-bold">Total:</span>{" "}
                       ${booking.total}
                     </p>
-
                     <p
                       className={`font-bold
                         ${
                           booking.status === "cancelled"
                             ? "text-red-500"
                             : "text-green-500"
-                        }`}
-                    >
+                        }`}>
                       Status: {booking.status}
                     </p>
-
                   </div>
-
-                  {/* PREORDER ITEMS */}
                   {booking.preOrderItems?.length > 0 && (
-
                     <div className="mt-6">
-
                       <h3 className="font-bold mb-3">
                         Pre-Order Items
                       </h3>
-
                       <div className="space-y-2">
-
                         {booking.preOrderItems.map((item) => (
-
                           <div
                             key={item.id}
-                            className="flex justify-between border-b pb-2"
-                          >
+                            className="flex justify-between border-b pb-2">
                             <p>{item.name}</p>
                             <p>${item.price}</p>
                           </div>
-
                         ))}
-
                       </div>
-
                     </div>
                   )}
-
-                  {/* ACTION BUTTONS */}
                   <div className="flex flex-wrap gap-4 mt-6">
-
-                    {/* Edit */}
                     {booking.status !== "cancelled" && (
                       <button
                         onClick={() =>
                           handleEditBooking(booking)
                         }
-                        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300"
-                      >
-                        Edit Booking
-                      </button>
-                    )}
-
-                    {/* Cancel */}
+                        className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all duration-300">
+                        Edit Booking</button> )}
                     {booking.status !== "cancelled" && (
                       <button
                         onClick={() =>
                           handleCancelBooking(booking.id)
                         }
                         className="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-all duration-300"
-                      >
-                        Cancel Booking
-                      </button>
+                      >Cancel Booking</button>
                     )}
-
-                    {/* Delete */}
                     <button
                       onClick={() =>
                         handleDeleteBooking(booking.id)
                       }
-                      className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-300"
-                    >
-                      Delete Booking
-                    </button>
-
+                      className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-all duration-300" >
+                      Delete Booking</button>
                   </div>
-
                 </>
               )}
-
             </div>
           ))}
-
         </div>
       )}
-
     </div>
   )
 }
-
 export default Bookings

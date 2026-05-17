@@ -5,13 +5,10 @@ function BookingForm({ restaurant, preOrderItems }) {
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
   const [guests, setGuests] = useState(1)
-
   const [loading, setLoading] = useState(false)
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-
     const newBooking = {
       restaurantId: restaurant.id,
       restaurantName: restaurant.name,
@@ -22,7 +19,6 @@ function BookingForm({ restaurant, preOrderItems }) {
       preOrderItems,
       status: "active"
     }
-
     try {
       const res = await fetch("http://localhost:3000/bookings", {
         method: "POST",
@@ -31,31 +27,22 @@ function BookingForm({ restaurant, preOrderItems }) {
         },
         body: JSON.stringify(newBooking)
       })
-
       if (!res.ok) throw new Error("Failed to create booking")
-
       alert("Booking successful!")
-
-      // reset form
       setName("")
       setDate("")
       setTime("")
       setGuests(1)
-
     } catch (error) {
       console.error("Booking error:", error)
     } finally {
       setLoading(false)
     }
   }
-
   return (
-
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-6 rounded-xl shadow-md space-y-4"
-    >
-        
+      className="bg-white p-6 rounded-xl shadow-md space-y-4" >
       <h2 className="text-xl font-bold">
         Book {restaurant.name}
       </h2>

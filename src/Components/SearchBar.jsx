@@ -34,7 +34,6 @@ function SearchBar({ restaurants, setFilteredRestaurants }) {
     setSearch(value)
     handleSearch(value, activeCategory)
   }
-
   const handleCategoryClick = (category) => {
     setActiveCategory(category)
     handleSearch(search, category)

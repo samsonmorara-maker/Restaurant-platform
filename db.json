@@ -1001,6 +1001,6 @@
       "status": "active",
       "id": "BENr-2g-r_U"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
+ 
 }
