@@ -18,6 +18,7 @@ import Bookings from "./pages/Bookings"
 import Login from "./Components/Login"
 
 import { auth } from "./firebase"
+import Footer from "./Components/Footer"
 
 function App() {
   const [user, setUser] = useState(null)
@@ -44,6 +45,7 @@ function App() {
         <Route path="/bookings"element={user ? (<Bookings user={user} />) : ( <Login />)}/>
         <Route path="/auth"element={<Login />}/>
       </Routes>
+      <Footer />
     </BrowserRouter>
   )}
 export default App

@@ -11,7 +11,7 @@ function Bookings() {
   }, [])
   const fetchBookings = async () => {
     try {
-      const res = await fetch("https://restaurant-platform-cr7r.onrender.com")
+      const res = await fetch("https://restaurant-platform-cr7r.onrender.com/bookings")
       if (!res.ok) {
         throw new Error("Failed to fetch bookings")
       }
