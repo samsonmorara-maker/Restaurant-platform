@@ -5,7 +5,7 @@ function Restaurants(){
     const [restaurants, setRestaurants]= useState([])
     const [filteredRestaurants, setFilteredRestaurants] = useState([])
     const [menuItems, setMenuItems] = useState([])
-
+    const [loading, setLoading] = useState(true)
 
     useEffect (() =>{
         async function fecthRestaurants() {
@@ -18,8 +18,12 @@ function Restaurants(){
        setRestaurants(data)
        setFilteredRestaurants(data)
         }catch (error){console.log(error.message)}
+        finally{
+            setLoading(false)
+        }
     }
     fecthRestaurants()},[])
+    if (loading)return <p className="text-center mt-20">Loading ....</p>
 
     return(
        <>
