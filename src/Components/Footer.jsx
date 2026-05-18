@@ -23,7 +23,7 @@ function Footer() {
           <h3 className="text-lg font-bold mb-3">Contact Us</h3>
           <ul className="space-y-2 text-gray-400">
             <li>Email: support@tastybites.com</li>
-            <li>Phone NO :+254 700 000 000</li>
+            <li>Phone NO :+254 745 711 223</li>
             <li>Location: Nairobi, Kenya</li>
           </ul>
           <div className="flex gap-4 mt-4">

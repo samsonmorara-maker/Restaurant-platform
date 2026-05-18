@@ -55,7 +55,7 @@ function RestaurantsDetails(){
         <h3 className="font-bold">{item.name}</h3>
         <p className="">{item.category}</p>
         <span className="text-orange-500">${item.price}</span>
-         <button onClick={handleGoToBooking}
+         <button onClick={() => setSelectedItems((prev) => [...prev, item])}
         className="bg-orange-500 text-white px-4 py-2 rounded-lg ml-70">
             Pre-order</button>
     </div>

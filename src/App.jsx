@@ -11,6 +11,7 @@ import Bookings from "./pages/Bookings"
 import Login from "./Components/Login"
 import { auth } from "./firebase"
 import Footer from "./Components/Footer"
+import Logout from "./Components/Logout"
 
 function App() {
   const [user, setUser] = useState(null)
