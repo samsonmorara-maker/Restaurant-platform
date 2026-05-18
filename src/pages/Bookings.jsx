@@ -106,26 +106,26 @@ function Bookings() {
                         ...editingBooking,
                         name: e.target.value
                       })
-                    }
-                    placeholder="Customer Name"
-                    className="border rounded-lg px-4 py-3"/>
-                  <input
-                    type="date"
-                    value={editingBooking.date}
-                    onChange={(e) =>
-                      setEditingBooking({
-                        ...editingBooking,
-                        date: e.target.value
+                   }
+                  placeholder="Customer Name"
+                  className="border rounded-lg px-4 py-3"/>
+                <input
+                  type="date"
+                  value={editingBooking.date}
+                  onChange={(e) =>
+                    setEditingBooking({
+                      ...editingBooking,
+                       date: e.target.value
                       })
-                    }
-                    className="border rounded-lg px-4 py-3"/>
+                  }
+                  className="border rounded-lg px-4 py-3"/>
                   <input
-                    type="time"
-                    value={editingBooking.time}
-                    onChange={(e) =>
-                      setEditingBooking({
-                        ...editingBooking,
-                        time: e.target.value
+                   type="time"
+                  value={editingBooking.time}
+                  onChange={(e) =>
+                     setEditingBooking({
+                       ...editingBooking,
+                      time: e.target.value
                       })
                     }
                     className="border rounded-lg px-4 py-3"/>
@@ -136,8 +136,7 @@ function Bookings() {
                       setEditingBooking({
                         ...editingBooking,
                         guests: e.target.value
-                      })
-                    }
+                      })}
                     placeholder="Guests"
                     className="border rounded-lg px-4 py-3" />
                   <div className="flex gap-4">
@@ -163,14 +162,11 @@ function Bookings() {
                       <span className="font-bold">Name:</span>{" "}
                       {booking.name}
                     </p>
-                    <p>
-                      <span className="font-bold">Date:</span>{" "}
-                      {booking.date}
-                    </p>
+                    <p> <span className="font-bold">Date:</span>{" "}
+                      {booking.date} </p>
                     <p>
                       <span className="font-bold">Time:</span>{" "}
-                      {booking.time}
-                    </p>
+                      {booking.time} </p>
                     <p>
                       <span className="font-bold">Guests:</span>{" "}
                       {booking.guests}

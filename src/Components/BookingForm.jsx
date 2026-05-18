@@ -5,6 +5,7 @@ function BookingForm({ restaurant, preOrderItems }) {
   const [date, setDate] = useState("")
   const [time, setTime] = useState("")
   const [guests, setGuests] = useState(1)
+  const [tableNumber, setTableNumber] = useState("")
   const [loading, setLoading] = useState(false)
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -16,6 +17,7 @@ function BookingForm({ restaurant, preOrderItems }) {
       date,
       time,
       guests,
+      tableNumber,
       preOrderItems,
       status: "active"
     }
@@ -80,6 +82,11 @@ function BookingForm({ restaurant, preOrderItems }) {
         min="1" placeholder="number of guests" value={guests}
         onChange={(e) => setGuests(e.target.value)}
         className="border px-4 py-2 rounded-lg"required/>
+
+      <input
+      type="number" min="1" placeholder= "Table Number" 
+      value={tableNumber} onChange={(e) => setTableNumber(e.target.value)}
+      className="border px-4 py-2 rounded-lg" />
 
       <button
         type="submit"  disabled={loading}
