@@ -1,12 +1,18 @@
 import { useNavigate } from "react-router-dom"
+import { signOut } from "firebase/auth"
+import { auth } from "../firebase"
 
 function Logout() {
   const navigate = useNavigate()
 
-  const handleLogout = () => {
-    localStorage.removeItem("token")
-    localStorage.removeItem("user")
-    navigate("/login")
+  const handleLogout = async () => {
+    try{ 
+      await signOut(auth)
+      navigate("/login")
+    }catch(error){
+      console.log(error)
+    }
+   
   }
   return (
     <button

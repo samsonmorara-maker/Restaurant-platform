@@ -13,6 +13,7 @@ import { auth } from "./firebase"
 import Footer from "./Components/Footer"
 import Logout from "./Components/Logout"
 
+
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
