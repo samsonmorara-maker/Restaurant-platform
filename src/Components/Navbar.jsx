@@ -1,10 +1,12 @@
 import React,{ useState } from "react";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
-
+import { auth } from "../firebase";
 
 function Navbar(){
     const [toggle, setToggle]= useState(false);
+     const currentUser = auth.currentUser
+      const isAdmin = currentUser?.email === "samsonmorara@gmail.com"
 
 
     return(
@@ -18,6 +20,9 @@ function Navbar(){
             <Link to="/restaurants" className="hover:text-black">Restaurants</Link>
             <Link to="/bookings" className="hover:text-black">My Bookings</Link>
             <Logout />
+            { isAdmin && (
+                <Link to ="/admin">Dashboard</Link>
+            )}
         </div>
         {toggle && (
             <div className="absolute top-12 right-0 z-50 w-1/2  flex flex-col gap-4 mt-4 font-medium md:hidden bg-orange-500 p-4 border rounded-xl border-0 h-40 text-2xl text-white">
@@ -25,6 +30,9 @@ function Navbar(){
             <Link to="/Restaurants" onClick={() => setToggle(false)} className="hover:text-black">Restaurants</Link>
             <Link to="/Bookings" onClick={() => setToggle(false)} className="hover:text-black">My Bookings</Link>
             <Logout />
+             { isAdmin && (
+                <Link to ="/admin">Dashboard</Link>
+            )}
         </div>
         ) }
     </nav>

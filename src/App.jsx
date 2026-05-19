@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from "react"
-import {  Routes, Route, HashRouter,} from "react-router-dom"
+import {  Routes, Route, HashRouter, Navigate } from "react-router-dom"
 import { onAuthStateChanged } from "firebase/auth"
 import "./App.css"
 import Home from "./pages/Home"
@@ -12,11 +12,14 @@ import Login from "./Components/Login"
 import { auth } from "./firebase"
 import Footer from "./Components/Footer"
 import Logout from "./Components/Logout"
-
+import Dashboard from "./pages/Dashboard"
+import AdminRoute from "./Components/AdminRoute"
 
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const currentUser = auth.currentUser
+  const isAdmin = currentUser?.email === "samsonmorara@gmail.com"
   useEffect(() => {
     const unsubscribe = onAuthStateChanged( auth,(currentUser) => {
         setUser(currentUser)
@@ -34,6 +37,7 @@ function App() {
       <Navbar user={user} />
 
       <Routes>
+        <Route path="/admin" element={<AdminRoute user={{isAdmin}}><Dashboard /></AdminRoute>}/>
         <Route path ="/login" element={ <Login />} />
         <Route path="/" element={user ?<Home /> :  < Navigate to="/Login "/>} />
         <Route path="/restaurants"element={ user ? <Restaurants /> : <Login />}/>
