@@ -1,20 +1,24 @@
 
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, lazy } from "react"
+
 import {  Routes, Route, HashRouter, Navigate } from "react-router-dom"
 import { onAuthStateChanged } from "firebase/auth"
 import "./App.css"
 import Home from "./pages/Home"
 import Navbar from "./Components/Navbar"
-import Restaurants from "./pages/Restaurants"
 import RestaurantsDetails from "./pages/RestaurantsDetails"
 import Bookings from "./pages/Bookings"
 import Login from "./Components/Login"
 import { auth } from "./firebase"
 import Footer from "./Components/Footer"
 import Logout from "./Components/Logout"
-import Dashboard from "./pages/Dashboard"
 import AdminRoute from "./Components/AdminRoute"
 
+// lazy loading
+const Restaurants = React.lazy (()=> import("./pages/Restaurants"))
+const RestaurantDetails = React.lazy(()=> import("./pages/RestaurantsDetails"))
+const Booking = React.lazy(()=> import("./pages/Bookings"))
+const Dashboard = React.lazy(()=> import("./pages/Dashboard"))
 function App() {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
