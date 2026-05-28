@@ -1,13 +1,11 @@
 
-import React, { useEffect, useState, lazy } from "react"
+import React, { useEffect, useState } from "react"
 
 import {  Routes, Route, HashRouter, Navigate } from "react-router-dom"
 import { onAuthStateChanged } from "firebase/auth"
 import "./App.css"
 import Home from "./pages/Home"
 import Navbar from "./Components/Navbar"
-import RestaurantsDetails from "./pages/RestaurantsDetails"
-import Bookings from "./pages/Bookings"
 import Login from "./Components/Login"
 import { auth } from "./firebase"
 import Footer from "./Components/Footer"
@@ -16,8 +14,8 @@ import AdminRoute from "./Components/AdminRoute"
 
 // lazy loading
 const Restaurants = React.lazy (()=> import("./pages/Restaurants"))
-const RestaurantDetails = React.lazy(()=> import("./pages/RestaurantsDetails"))
-const Booking = React.lazy(()=> import("./pages/Bookings"))
+const RestaurantsDetails = React.lazy(()=> import("./pages/RestaurantsDetails"))
+const Bookings = React.lazy(()=> import("./pages/Bookings"))
 const Dashboard = React.lazy(()=> import("./pages/Dashboard"))
 function App() {
   const [user, setUser] = useState(null)
@@ -39,17 +37,18 @@ function App() {
 
       
       <Navbar user={user} />
-
+      <React.Suspense fallback={<p className="text-center mt-20">Loading...</p>}> 
       <Routes>
         <Route path="/admin" element={<AdminRoute user={{isAdmin}}><Dashboard /></AdminRoute>}/>
-        <Route path ="/login" element={ <Login />} />
-        <Route path="/" element={user ?<Home /> :  < Navigate to="/Login "/>} />
+        <Route path ="/login" element={<Login />} />
+        <Route path="/" element={user ?<Home /> :< Navigate to="/Login "/>} />
         <Route path="/restaurants"element={ user ? <Restaurants /> : <Login />}/>
         <Route path="/restaurants/:id" element={<RestaurantsDetails />}/>
         <Route path="/bookings"element={user ? (<Bookings user={user} />) : ( <Login />)}/>
         <Route path="/auth"element={<Login />}/>
       </Routes>
+      </React.Suspense>
       <Footer />
-    </HashRouter>
+    </HashRouter> 
   )}
 export default App
